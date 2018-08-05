@@ -552,3 +552,38 @@ zplug load
 #ZLE_RPROMPT_INDENT=0
 
 # vim: ft=zsh
+
+
+
+export ZSH="/home/vtables/oh-my-zsh"
+ZSH_THEME="vsouda"
+source $ZSH/oh-my-zsh.sh
+
+plugins=(
+  git
+)
+
+SAVEHIST=5000000
+HISTSIZE=1000000
+HISTFILE=~/.zsh_history
+setopt hist_ignore_dups
+
+#bindkey -v
+#bindkey -rpM viins '^['
+#bindkey -rpM vicmd '^['
+#bindkey -M vicmd y backward-char
+#bindkey -M vicmd h yank
+#bindkey -M vicmd o forward-char
+#bindkey -M vicmd e beginning-of-line-hist
+#bindkey -M vicmd n end-of-line-hist
+#bindkey -M vicmd '^?' backward-delete-char
+#KEYTIMEOUT=1
+
+git config --global diff.tool vimdiff
+git config --global difftool.prompt false
+git config --global alias.d difftool
+
+alias ls='ls -a --color'
+
+
+
