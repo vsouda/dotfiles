@@ -9,14 +9,6 @@ powerlevel9k_random_color(){
 	printf "%03d" $code
 }
 
-zsh_wifi_signal(){
-	local signal=$(nmcli -t device wifi | grep '^*' | awk -F':' '{print $6}')
-    local color="yellow"
-    [[ $signal -gt 75 ]] && color="green"
-    [[ $signal -lt 50 ]] && color="red"
-    echo -n "%F{$color}\uf1eb" # \uf1eb is 
-}
-
 # =============================================================================
 #                                   Variables
 # =============================================================================
@@ -553,21 +545,6 @@ zplug load
 
 # vim: ft=zsh
 
-
-
-export ZSH="/home/vtables/oh-my-zsh"
-ZSH_THEME="vsouda"
-source $ZSH/oh-my-zsh.sh
-
-plugins=(
-  git
-)
-
-SAVEHIST=5000000
-HISTSIZE=1000000
-HISTFILE=~/.zsh_history
-setopt hist_ignore_dups
-
 #bindkey -v
 #bindkey -rpM viins '^['
 #bindkey -rpM vicmd '^['
@@ -584,6 +561,4 @@ git config --global difftool.prompt false
 git config --global alias.d difftool
 
 alias ls='ls -a --color'
-
-
 
