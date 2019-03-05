@@ -12,15 +12,15 @@ export ENHANCD_COMMAND='c'
 # =============================================================================
 #                                   Plugins
 # =============================================================================
+
 # Check if zplug is installed
 
 source "${HOME}/.zgen/zgen.zsh"
 
 if ! zgen saved; then
 
+  zgen load zsh-users/zsh-syntax-highlighting
   zgen load bhilburn/powerlevel9k powerlevel9k
-  zgen load seebi/dircolors-solarized
-  zgen load b4b4r07/zsh-history-enhanced
   zgen save
 
 fi
@@ -43,8 +43,6 @@ SAVEHIST=$HISTSIZE
 
 setopt autocd                   # Allow changing directories without `cd`
 setopt append_history           # Dont overwrite history
-setopt extended_history         # Also record time and duration of commands.
-setopt share_history            # Share history between multiple shells
 setopt hist_expire_dups_first   # Clear duplicates when trimming internal hist.
 setopt hist_find_no_dups        # Dont display duplicates during searches.
 setopt hist_ignore_dups         # Ignore consecutive duplicates.
@@ -110,8 +108,6 @@ alias 9='pu -9'
 alias pu='() { pushd $1 &> /dev/null; dirs -v; }'
 alias po='() { popd &> /dev/null; dirs -v; }'
 
-zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
-
 # =============================================================================
 #                                 Completions
 # =============================================================================
@@ -136,8 +132,6 @@ zstyle ":completion:*:default" list-colors ${(s.:.)LS_COLORS}
 # =============================================================================
 
 which gdircolors &> /dev/null && alias dircolors='() { $(whence -p gdircolors) }'
-which dircolors &> /dev/null && \
-	  eval $(dircolors ~/.zplug/repos/seebi/dircolors-solarized/dircolors.256dark)
 
 ZSH_HISTORY_FILE="$HISTFILE"
 ZSH_HISTORY_FILTER="fzf:peco:percol"
